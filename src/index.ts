@@ -16,7 +16,7 @@ function ProcessKeccak (message: string, n: number): number {
 // js don't support shift over 32 bits
 // custom the left shift function
 function rot(num: number, bits: number): number {
-    return num * Math.pow(2,bits);
+    return num * Math.pow(2 , bits);
 }
 
 
@@ -36,7 +36,7 @@ function store (a: number): number[] {
     // lanes
     let storeList = [];
     for (let i = 0; i < 8; i++) {
-        storeList.push((rot(a,(8*i))) % 256);
+        storeList.push((rot(a,(8 * i))) % 256);
     }
     return storeList;
 }
@@ -106,12 +106,12 @@ async function KeccakR (lanes: number[][], R: number): Promise<number[][]> {
 
     for (let t = 0; t < 24; t++) {
         x = b;
-        y = (2*a+3*b)%5;
+        y = (2 * a + 3 * b) % 5;
         // set the last x and y
         a = x;
         b = y;
         // pass lanes to rot function
-        lanes[x][y] = rot(current, (t+1)*(t+2)/2);
+        lanes[x][y] = rot(current, (t + 1) * (t + 2) /2);
         current = lanes[x][y];
     }
 
@@ -120,7 +120,7 @@ async function KeccakR (lanes: number[][], R: number): Promise<number[][]> {
         let t = [];
         for (let x = 0; x < 5; x++) {
             t.push(lanes[x][y]);
-            lanes[x][y] = t[x] ^((~t[(x+1)%5]) & t[(x+2)%5]);
+            lanes[x][y] = t[x] ^ ((~t[(x + 1) % 5]) & t[(x + 2) % 5]);
         }
 
     }
