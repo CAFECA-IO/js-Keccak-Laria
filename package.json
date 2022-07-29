@@ -1,0 +1,19 @@
+{
+  "name": "js-keccak-laria",
+  "version": "1.0.0",
+  "description": "Pure Javascript Keccak Library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CAFECA-IO/js-Keccak-Laria.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CAFECA-IO/js-Keccak-Laria/issues"
+  },
+  "homepage": "https://github.com/CAFECA-IO/js-Keccak-Laria#readme"
+}
