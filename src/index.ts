@@ -12,23 +12,19 @@ function ProcessKeccak (message: string, n: number): number {
 
 }
 
-function rot (d: number): number {
-    // return rot
-    return d;
-}
-
-// js don't support left shift over 32 bits
+// js don't support shift over 32 bits
 // custom the left shift function
-function lshift(num: number, bits: number): number {
+function rot(num: number, bits: number): number {
     return num * Math.pow(2,bits);
 }
+
 
 // load the leftshift in the list
 function load (b: number[]): number {
     // sum
     let sum = 0;
     for (let i = 0; i < 8; i++) {
-        sum = sum + lshift(b[i], 8*i);
+        sum = sum + rot(b[i], 8*i);
     }
     
     return sum;
@@ -39,7 +35,7 @@ function store (a: number): number[] {
     // lanes
     let storeList = [];
     for (let i = 0; i < 8; i++) {
-        storeList.push((lshift(a,(8*i))) % 256);
+        storeList.push((rot(a,(8*i))) % 256);
     }
     return storeList;
 }
@@ -69,6 +65,5 @@ function KeccakR (lanes: number): number {
 function Padding (state: number): number {
     return state;
 }
-
 
 export default ProcessKeccak;
