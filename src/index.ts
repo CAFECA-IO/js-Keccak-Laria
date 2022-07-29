@@ -1,12 +1,12 @@
 
-function ProcessKeccak (message: string, n: number): number {
+function processKeccak (message: string, n: number): number {
     // do 數字判斷
 
     // absorb
-    Keccak(12333);
-    Padding(12312);
+    keccak(12333);
+    padding(12312);
     //squezzeout
-    Keccak(12333);
+    keccak(12333);
 
     const hash_result = 123;
     return hash_result;
@@ -41,7 +41,7 @@ function store (a: number): number[] {
     return storeList;
 }
 
-function Keccak (s: number): number {
+function keccak (s: number): number {
    
     // call load function to get sum
     // load([1,1,1,1,1,1,1,1]);
@@ -61,12 +61,12 @@ async function KeccakF (lanes: number[][]): Promise<number[][]> {
     const R = 1;
     let result: number[][] = [];
     // pass last lane into KeccakR function
-    let lastLane = await KeccakR(lanes, R);
+    let lastLane = await keccakR(lanes, R);
     for (let i = 1; i < 24 ; i++) {
         if(i < 23) {
-            lastLane = await KeccakR(lastLane, R);
+            lastLane = await keccakR(lastLane, R);
         } else {
-            result = await KeccakR(lastLane, R);
+            result = await keccakR(lastLane, R);
             return result;
         } 
     }    
@@ -74,7 +74,7 @@ async function KeccakF (lanes: number[][]): Promise<number[][]> {
 }
 
 // ++ Todo: need to complete χ and ι and test
-async function KeccakR (lanes: number[][], R: number): Promise<number[][]> {
+async function keccakR (lanes: number[][], R: number): Promise<number[][]> {
     // θ
     let C = [];
     let D = [];
@@ -138,8 +138,8 @@ async function KeccakR (lanes: number[][], R: number): Promise<number[][]> {
     return lanes;
 }
 
-function Padding (state: number): number {
+function padding (state: number): number {
     return state;
 }
 
-export default ProcessKeccak;
+export default processKeccak;
