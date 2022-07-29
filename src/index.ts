@@ -51,6 +51,7 @@ function Keccak (s: number): number {
     
     // call load function to get store
     store(1);
+    load([1, 2, 3, 4]);
     return s;
 
 }
