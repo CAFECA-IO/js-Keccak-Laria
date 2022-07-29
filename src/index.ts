@@ -93,7 +93,7 @@ async function KeccakR (lanes: number[][], R: number): Promise<number[][]> {
         // initialize
         result[x] = [];
         for (let y = 0; y < 5 ; y++) {
-            result[x][y] = lanes[x][y]^D[x]
+            result[x][y] = lanes[x][y] ^ D[x]
         }
     }
 
@@ -111,7 +111,7 @@ async function KeccakR (lanes: number[][], R: number): Promise<number[][]> {
         a = x;
         b = y;
         // pass lanes to rot function
-        lanes[x][y] = rot(current, (t + 1) * (t + 2) /2);
+        lanes[x][y] = rot(current, (t + 1) * (t + 2) / 2);
         current = lanes[x][y];
     }
 
