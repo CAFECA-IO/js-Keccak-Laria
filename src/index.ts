@@ -44,7 +44,7 @@ function KeccakR (lanes: number): number {
     return lanes;
 }
 
-function Padding (state: number) {
+function Padding (state: number): number {
     return state;
 }
 
