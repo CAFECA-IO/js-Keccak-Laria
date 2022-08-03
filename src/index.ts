@@ -1,5 +1,4 @@
 // need to put final structure here
-
 import KeccakState from "./lib/keccak_state";
 
 type Nullable<T> = T | null;

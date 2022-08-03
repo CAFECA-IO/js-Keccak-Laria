@@ -22,7 +22,6 @@ class KeccakState {
     this.squeezing = false
   }
 
-  
   initialize (rate: number, capacity: number): boolean {
     
     for (let i = 0; i < 50; ++i) {
@@ -38,6 +37,7 @@ class KeccakState {
   }
   
   async absorb (data: number[]) : Promise<boolean> {
+    // absorb the data
     for (let i = 0; i < data.length; ++i) {
       this.state[Math.floor(this.count / 4)] ^= data[i] << (8 * (this.count % 4));
       this.count += 1;
@@ -50,9 +50,10 @@ class KeccakState {
   }
   
   absorbLastFewBits (bits: number): boolean {
-    // set the state 
+    // set the state and use it to do xor
     this.state[Math.floor(this.count / 4)] ^= bits << (8 * (this.count % 4));
 
+    // 0x80 = 1000 0000 = 128 -> bits & 0x80 means: 確認不小於 8 bits -> 則處理多餘 bits
     if ((bits & 0x80) !== 0 && this.count === (this.blockSize - 1)) {
       f(this.state);
     } 
