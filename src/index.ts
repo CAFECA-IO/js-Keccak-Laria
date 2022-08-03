@@ -29,7 +29,7 @@ class Keccak {
 
   }
 
-  update (data: any, encoding?: BufferEncoding | undefined) {
+  update (data: any, encoding?: BufferEncoding | undefined) : any {
 
     if (!Buffer.isBuffer(data) && typeof data !== 'string') {
       throw new TypeError('Data should be a string or a buffer');
@@ -46,7 +46,7 @@ class Keccak {
     return this;
   }
 
-  digest (encoding?: BufferEncoding | undefined) {
+  digest (encoding?: BufferEncoding | undefined) : string {
     
     if (this.finalized) {
       throw new Error('Digest is already called');
@@ -70,7 +70,7 @@ class Keccak {
   }
 
   // remove result from memory
-  resetState () {
+  resetState () : any {
     this.state.initialize(this.rate, this.capacity);
     return this;
   }

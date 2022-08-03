@@ -37,7 +37,7 @@ class KeccakState {
   
   }
   
-  async absorb (data: number[]) : Promise<boolean>{
+  async absorb (data: number[]) : Promise<boolean> {
     for (let i = 0; i < data.length; ++i) {
       this.state[Math.floor(this.count / 4)] ^= data[i] << (8 * (this.count % 4));
       this.count += 1;
@@ -53,7 +53,6 @@ class KeccakState {
     // set the state 
     this.state[Math.floor(this.count / 4)] ^= bits << (8 * (this.count % 4));
 
-    // because blocksize is nullable -> we need to deal with this nullable problem
     if ((bits & 0x80) !== 0 && this.count === (this.blockSize - 1)) {
       f(this.state);
     } 
