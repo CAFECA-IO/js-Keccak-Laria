@@ -15,7 +15,7 @@ class Keccak {
   isReady: boolean;
 
   // user constructor to initialize params
-  constructor (name = 'keccak256') {
+  constructor (algorithm = 'keccak256') {
 
     // ++ todo: do map : select the standard (keccak 256 or 512 ...)
 
@@ -80,8 +80,6 @@ class Keccak {
   resetState () : any {
     // bring state and call initialize
     this.state.initialize(this.rate, this.capacity);
-    // return this
-    return this;
   }
 
 }
