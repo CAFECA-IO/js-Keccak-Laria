@@ -5,9 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "bin/test.js",
-    "start:build": "tsc -w",  
-    "start:run": "nodemon ./dist/index.js", 
-    "start": "concurrently npm:start:*" 
+    "start:build": "tsc -w",
+    "start:run": "nodemon ./dist/index.js",
+    "start": "concurrently npm:start:*"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/CAFECA-IO/js-Keccak-Laria#readme",
   "devDependencies": {
+    "@types/node": "^18.6.3",
     "concurrently": "^7.3.0",
     "nodemon": "^2.0.19"
   }
