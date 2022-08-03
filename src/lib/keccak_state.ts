@@ -1,11 +1,9 @@
-import f from '../keccak_f';
-
-type Nullable<T> = T | null;
+import f from './keccak_f';
 
 class KeccakState {
   
   state: number[];
-  blockSize: Nullable<number>;
+  blockSize: number;
   count: number;
   squeezing: boolean;
 
@@ -19,7 +17,7 @@ class KeccakState {
       0, 0, 0, 0, 0
     ]
   
-    this.blockSize = null;
+    this.blockSize = 0;
     this.count = 0
     this.squeezing = false
   }

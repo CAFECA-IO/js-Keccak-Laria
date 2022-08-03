@@ -1,5 +1,80 @@
-import Keccak from "./keccak";
+// need to put final structure here
 
-let keccak = new Keccak('keccak256').update('Clemmy').digest('hex');
-console.log(keccak);
-//bc36d594fb78cbd38b741826c49755e1c15ae5049c91c3f014511ec1a83786d6
+import KeccakState from "./lib/keccak_state";
+
+type Nullable<T> = T | null;
+
+class Keccak {
+
+  rate: number;
+  capacity: number;
+  delimitedSuffix: Nullable<number>;
+  hashBitLength: number;
+  options: any;
+  state: any;
+  finalized: boolean;
+
+  constructor (name = 'keccak256') {
+    // do map : select the standard (keccak 256 or 512 ...)
+
+    this.rate = 1088;
+    this.capacity = 512;
+    this.delimitedSuffix = null;
+    this.hashBitLength = 256;
+    this.options = null;
+
+    this.state = new KeccakState();
+    this.state.initialize(this.rate, this.capacity);
+    this.finalized = false;
+    
+  }
+
+  update (data: any, encoding?: BufferEncoding | undefined) {
+
+    if (!Buffer.isBuffer(data) && typeof data !== 'string') {
+      throw new TypeError('Data should be a string or a buffer');
+    } 
+    if (this.finalized) {
+      throw new Error('Digest is already called');
+    }
+    if (!Buffer.isBuffer(data)) {
+      data = Buffer.from(data, encoding);
+    } 
+
+    this.state.absorb(data);
+
+    return this
+  }
+
+  digest (encoding?: BufferEncoding | undefined) {
+    
+    if (this.finalized) {
+      throw new Error('Digest is already called');
+    }
+    
+    this.finalized = true
+
+    if (this.delimitedSuffix) {
+      this.state.absorbLastFewBits(this.delimitedSuffix);
+    } 
+    
+    let digest = this.state.squeeze(this.hashBitLength / 8)
+    
+    if (encoding !== undefined) {
+      digest = digest.toString(encoding);
+    }
+
+    this.resetState()
+
+    return digest
+  }
+
+  // remove result from memory
+  resetState () {
+    this.state.initialize(this.rate, this.capacity);
+    return this;
+  }
+
+}
+
+export default Keccak;
