@@ -31,7 +31,7 @@ class KeccakState {
     this.blockSize = rate / 8;
     this.count = 0;
     this.squeezing = false;
-    
+    // return initialize status 
     return true;
   
   }
@@ -41,11 +41,13 @@ class KeccakState {
     for (let i = 0; i < data.length; ++i) {
       this.state[Math.floor(this.count / 4)] ^= data[i] << (8 * (this.count % 4));
       this.count += 1;
+      // call f(state)
       if (this.count === this.blockSize) {
         f(this.state);
         this.count = 0;
       }
     }
+    // return absorb status(boolean)
     return true;
   }
   
@@ -54,6 +56,7 @@ class KeccakState {
     this.state[Math.floor(this.count / 4)] ^= bits << (8 * (this.count % 4));
 
     // 0x80 = 1000 0000 = 128 -> bits & 0x80 means: 確認不小於 8 bits -> 則處理多餘 bits
+    // call f(state)
     if ((bits & 0x80) !== 0 && this.count === (this.blockSize - 1)) {
       f(this.state);
     } 
@@ -75,7 +78,7 @@ class KeccakState {
       this.absorbLastFewBits(0x01);
     
     }
-  
+    // create buffer with length
     const output = Buffer.alloc(length);
     
     for (let i = 0; i < length; ++i) {
@@ -84,14 +87,14 @@ class KeccakState {
       this.count += 1;
     
       if (this.count === this.blockSize) {
-      
+        // call f(state)
         f(this.state);
         this.count = 0;
       
       }
     
     }
-  
+    // return output buffer
     return output;
   
   }
