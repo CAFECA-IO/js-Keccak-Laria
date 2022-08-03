@@ -26,7 +26,7 @@ class Keccak {
     this.state = new KeccakState();
     this.state.initialize(this.rate, this.capacity);
     this.finalized = false;
-    
+
   }
 
   update (data: any, encoding?: BufferEncoding | undefined) {
@@ -43,7 +43,7 @@ class Keccak {
 
     this.state.absorb(data);
 
-    return this
+    return this;
   }
 
   digest (encoding?: BufferEncoding | undefined) {
@@ -58,15 +58,15 @@ class Keccak {
       this.state.absorbLastFewBits(this.delimitedSuffix);
     } 
     
-    let digest = this.state.squeeze(this.hashBitLength / 8)
+    let result = this.state.squeeze(this.hashBitLength / 8)
     
     if (encoding !== undefined) {
-      digest = digest.toString(encoding);
+      result = result.toString(encoding);
     }
 
     this.resetState()
 
-    return digest
+    return result;
   }
 
   // remove result from memory
