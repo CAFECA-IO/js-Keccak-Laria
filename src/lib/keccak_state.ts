@@ -2,14 +2,15 @@ import f from '../keccak_f';
 
 type Nullable<T> = T | null;
 
-class Keccak {
+class KeccakState {
   
   state: number[];
-  blockSize: Nullable<number>;;
+  blockSize: Nullable<number>;
   count: number;
   squeezing: boolean;
 
   constructor() {
+    // initialization
     this.state = [
       0, 0, 0, 0, 0,
       0, 0, 0, 0, 0,
@@ -40,11 +41,11 @@ class Keccak {
   
   async absorb (data: number[]) : Promise<boolean>{
     for (let i = 0; i < data.length; ++i) {
-      this.state[~~(this.count / 4)] ^= data[i] << (8 * (this.count % 4))
-      this.count += 1
+      this.state[Math.floor(this.count / 4)] ^= data[i] << (8 * (this.count % 4));
+      this.count += 1;
       if (this.count === this.blockSize) {
-        f(this.state)
-        this.count = 0
+        f(this.state);
+        this.count = 0;
       }
     }
     return true;
@@ -59,17 +60,17 @@ class Keccak {
       f(this.state);
     } 
     
-    this.state[Math.floor((this.blockSize - 1) / 4)] ^= 0x80 << (8 * ((this.blockSize - 1) % 4))
+    this.state[Math.floor((this.blockSize - 1) / 4)] ^= 0x80 << (8 * ((this.blockSize - 1) % 4));
     
-    f(this.state)
+    f(this.state);
     
-    this.count = 0
-    this.squeezing = true
+    this.count = 0;
+    this.squeezing = true;
     
     return true;
   }
   
-  squeeze (length: number) {
+  squeeze (length: number) : Buffer {
     
     if (!this.squeezing) {
       
@@ -99,4 +100,4 @@ class Keccak {
   
 }
 
-export default Keccak;
+export default KeccakState;
