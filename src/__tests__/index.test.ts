@@ -1,4 +1,4 @@
-// src/__tests__/sum.test.ts
+// call keccak and test final result
 import Keccak from '../index';
 
 describe("Check Keccak output hash is correct", () => {

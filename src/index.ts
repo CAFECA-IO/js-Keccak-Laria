@@ -3,6 +3,9 @@ import KeccakState from "./lib/keccak_state";
 
 type Nullable<T> = T | null;
 
+/**
+ * Keccak class used to organize the keccak related functions
+ */
 class Keccak {
 
   rate: number | undefined;
@@ -15,31 +18,40 @@ class Keccak {
   isReady: boolean;
 
   // user constructor to initialize params
+  /**
+   * use constructor to set rate, capacity, delimitedSuffix, options
+   * @param algorithm keccak algorithm given by user
+   */
   constructor (algorithm = 'keccak256') {
 
-    // map
     let algoMap = new Map<string, number>();
-    // set algo
+    // set algorithm map to algoMap
     algoMap.set("keccak224", 1152);
     algoMap.set("keccak256", 1088);
     algoMap.set("keccak384", 832);
     algoMap.set("keccak512", 576);
 
+    // map algorithm name with values
     // if rate is undefined, we set it to 1088 (keccak256)
     this.rate = algoMap.get(algorithm) == undefined ? 1088: algoMap.get(algorithm);
     this.capacity = (this.rate == undefined) ? 512 : 1600 - this.rate;
     this.delimitedSuffix = null;
     this.hashBitLength = (this.rate == undefined) ? 256 : (1600 - this.rate) / 2;
     this.options = null;
-
+    // create KeccakState
     this.state = new KeccakState();
-    // braing state and call initialize
+    // bring state and call initialize
     this.isReady = this.state.initialize(this.rate, this.capacity);
     this.finalized = false;
 
   }
 
   // update  
+  /**
+   * update function to absorb data
+   * @param data data given by user
+   * @param encoding (optional) encoding type 
+   */
   update (data: any, encoding?: BufferEncoding | undefined) : any {
     // check is buffer or string
     if (!Buffer.isBuffer(data) && typeof data !== 'string') {
@@ -51,13 +63,18 @@ class Keccak {
     if (!Buffer.isBuffer(data)) {
       data = Buffer.from(data, encoding);
     } 
-    // do absorb
+    // do absorb function
     this.state.absorb(data);
 
     return this;
   }
 
-  digest (encoding?: BufferEncoding | undefined) : string {
+  // digest
+  /**
+   * digest function to squeeze data
+   * @param encoding encoding type 
+   */
+  digest (encoding: BufferEncoding | undefined) : string {
   
     if (this.finalized) {
       throw new Error('Digest is already called');
@@ -83,7 +100,10 @@ class Keccak {
     return result;
   }
 
-  // remove result from memory
+  // remove result (state before) from memory 
+  /**
+   * resetState function to reset state
+   */
   resetState () : any {
     // bring state and call initialize
     this.state.initialize(this.rate, this.capacity);
