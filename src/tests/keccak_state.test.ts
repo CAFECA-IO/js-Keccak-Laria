@@ -28,6 +28,11 @@ describe("Check squeeze data without any data", () => {
 test("check absorb function state value", () => {
 
     const data = Buffer.from('Clemmy');
+    // use keccak256 to test
+    // call keccakState to compare
+    keccakState.initialize(1088, 512);
+    keccakState.absorb(data);
+
     let state = [];
     for (let i = 0; i < 50; ++i) {
         state[i] = 0;
@@ -49,15 +54,18 @@ test("check absorb function state value", () => {
         }
     }
 
-    // call keccakState to compare
-    keccakState.initialize(1088, 512);
-    keccakState.absorb(data);
+    // use keccakState to compare
     expect(keccakState.state).toStrictEqual(state);
 
 });
 
 // check squeeze function calculation
 test("check absorbFewBits function state value", () => {
+    
+    // use keccak256 to test
+    keccakState.initialize(1088, 512);
+    keccakState.absorbLastFewBits(0x01);
+
     // mock coculation
     let state = [];
     for (let i = 0; i < 50; ++i) {
@@ -70,9 +78,7 @@ test("check absorbFewBits function state value", () => {
     // call f(state)
     state = f(state);
 
-    // call keccakState to compare
-    keccakState.initialize(1088, 512);
-    keccakState.absorbLastFewBits(0x01);
+    // use keccakState to compare
     expect(keccakState.state).toStrictEqual(state);
 
 });
@@ -80,50 +86,15 @@ test("check absorbFewBits function state value", () => {
 // check squeeze function calculation
 test("check squeeze function state value", () => {
     
-    const data = Buffer.from('Clemmy');
-    let state = [];
-    for (let i = 0; i < 50; ++i) {
-        state[i] = 0;
-    }
-
-    let count = 0;
-    let blockSize = 1088 / 8;
-
-    // mock coculation
-    for (let i = 0; i < data.length; ++i) {
-        // do math calculation -> do data(in blocksize) xor state and store result to state
-        state[Math.floor(count / 4)] ^= data[i] << (8 * (count % 4));
-        count += 1;
-        // call f(state)
-        if (count === blockSize) {
-          // 完成 p block 和 state 的一區塊運算：run f(this.state)
-          f(state);
-          count = 0;
-        }
-    }
-
-    // create buffer with length
-    // use keccak256 to test
-    const output = Buffer.alloc(((1600 - 1088) / 2) / 8);
-
-    for (let i = 0; i < ((1600 - 1088) / 2) / 8; ++i) {
-        // 數學運算： 截斷後 8 bits 並去除
-        output[i] = (state[Math.floor(count / 4)] >>> (8 * (count % 4))) & 0xff;
-        count += 1;
-
-        if (count === blockSize) {
-            // call f(state)
-            f(state);
-            count = 0;
-        }
+    const data = Buffer.from("Clemmy");
     
-    }
-
+    // use keccak256 to test
     // call keccakState to compare
     keccakState.initialize(1088, 512);
     keccakState.absorb(data);
-    const result = keccakState.squeeze(((1600 - 1088) / 2 ) / 8 );
-    // call keccakState output result to compare
-    expect(result).toStrictEqual(output);
+    const result = keccakState.squeeze(((1600 - 1088) / 2) / 8 );
+
+    // use keccakState output result to compare
+    expect(result.toString("hex")).toStrictEqual("bc36d594fb78cbd38b741826c49755e1c15ae5049c91c3f014511ec1a83786d6");
 
 });
