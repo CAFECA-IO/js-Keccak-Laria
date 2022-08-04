@@ -7,6 +7,14 @@ const keccak512 = new Keccak('keccak512');
 const keccak224 = new Keccak('keccak224');
 const keccak384 = new Keccak('keccak384');
 
+// keccak256: check input data -> output corrected hash
+test("keccak256 - check output value equals to expected hash", () => {
+    const test_date = new Date().toLocaleString();
+    const keccak_test = new Keccak('keccak256');
+    const result = keccak_test.update(test_date).digest('hex');
+    expect(result).toStrictEqual("0ab57824b2f616ff70c8a703700b2bce45383e32ccb4d7e876a2e85cad9cc40b");
+});
+
 // overall test
 describe("Check overall Keccak output hash is correct", () => {
    
