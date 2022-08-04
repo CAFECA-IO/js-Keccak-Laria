@@ -53,13 +53,12 @@ class KeccakState {
    * @param data data(input message) number[] list
    * @returns absorb status boolean
    */  
-  async absorb (data: number[]) : Promise<boolean> {
+  async absorb (data: Buffer) : Promise<boolean> {
     // absorb the data
     for (let i = 0; i < data.length; ++i) {
       // do math calculation -> do data(in blocksize) xor state and store result to state
       this.state[Math.floor(this.count / 4)] ^= data[i] << (8 * (this.count % 4));
       this.count += 1;
-
       // call f(state)
       if (this.count === this.blockSize) {
         // 完成 p block 和 state 的一區塊運算：run f(this.state)
@@ -82,10 +81,10 @@ class KeccakState {
     this.state[Math.floor(this.count / 4)] ^= bits << (8 * (this.count % 4));
 
     // 0x80 = 1000 0000 = 128 -> bits & 0x80 means: 確認不小於 8 bits -> 則處理多餘 bits
-    // call f(state)
-    if ((bits & 0x80) !== 0 && this.count === (this.blockSize - 1)) {
-      f(this.state);
-    } 
+    // call f(state) -> use for sha3
+    // if ((bits & 0x80) !== 0 && this.count === (this.blockSize - 1)) {
+    //   f(this.state);
+    // } 
     
     this.state[Math.floor((this.blockSize - 1) / 4)] ^= 0x80 << (8 * ((this.blockSize - 1) % 4));
     // call f(state)

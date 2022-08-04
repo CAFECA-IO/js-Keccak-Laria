@@ -33,7 +33,7 @@ class Keccak {
 
     // map algorithm name with values
     // if rate is undefined, we set it to 1088 (keccak256)
-    this.rate = algoMap.get(algorithm) == undefined ? 1088: algoMap.get(algorithm);
+    this.rate = algoMap.get(algorithm) == undefined ? undefined : algoMap.get(algorithm);
     this.capacity = (this.rate == undefined) ? 512 : 1600 - this.rate;
     this.delimitedSuffix = null;
     this.hashBitLength = (this.rate == undefined) ? 256 : (1600 - this.rate) / 2;
@@ -82,10 +82,10 @@ class Keccak {
     
     this.finalized = true
 
-    // call absorbLastFewBits
-    if (this.delimitedSuffix) {
-      this.state.absorbLastFewBits(this.delimitedSuffix);
-    } 
+    // call absorbLastFewBits for sha3
+    // if (this.delimitedSuffix) {
+    //   this.state.absorbLastFewBits(this.delimitedSuffix);
+    // } 
     
     // set result to digest
     let digest = this.state.squeeze(this.hashBitLength / 8)
