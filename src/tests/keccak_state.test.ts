@@ -27,7 +27,7 @@ describe("Check squeeze data without any data", () => {
 // check absorb function calculation
 test("check absorb function state value", () => {
 
-    const data = Buffer.from('Clemmy');
+    const data = Buffer.from("Clemmy");
     // use keccak256 to test
     // call keccakState to compare
     keccakState.initialize(1088, 512);
