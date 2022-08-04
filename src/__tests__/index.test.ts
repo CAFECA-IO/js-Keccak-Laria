@@ -10,11 +10,9 @@ describe("Check Keccak output hash is correct", () => {
    
     // keccak256: check input data -> output corrected hash
     test("keccak256 - check output value equals to expected hash", () => {
-
         const result = keccak256.update("Clemmy").digest('hex');
         // check update could be called
         expect(result).toBe("bc36d594fb78cbd38b741826c49755e1c15ae5049c91c3f014511ec1a83786d6");
-      
     });
     
     // keccak512: check input data -> output corrected hash

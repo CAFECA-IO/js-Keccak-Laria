@@ -17,7 +17,7 @@ class Keccak {
   // user constructor to initialize params
   constructor (algorithm = 'keccak256') {
 
-    // ++ todo: do map : select the standard (keccak 256 or 512 ...)
+    // map
     let algoMap = new Map<string, number>();
     // set algo
     algoMap.set("keccak224", 1152);
@@ -25,7 +25,8 @@ class Keccak {
     algoMap.set("keccak384", 832);
     algoMap.set("keccak512", 576);
 
-    this.rate = algoMap.get(algorithm);
+    // if rate is undefined, we set it to 1088 (keccak256)
+    this.rate = algoMap.get(algorithm) == undefined ? 1088: algoMap.get(algorithm);
     this.capacity = (this.rate == undefined) ? 512 : 1600 - this.rate;
     this.delimitedSuffix = null;
     this.hashBitLength = (this.rate == undefined) ? 256 : (1600 - this.rate) / 2;
