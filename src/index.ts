@@ -5,8 +5,8 @@ type Nullable<T> = T | null;
 
 class Keccak {
 
-  rate: number;
-  capacity: number;
+  rate: number | undefined;
+  capacity: number  | undefined;
   delimitedSuffix: Nullable<number>;
   hashBitLength: number;
   options: any;
@@ -18,11 +18,17 @@ class Keccak {
   constructor (algorithm = 'keccak256') {
 
     // ++ todo: do map : select the standard (keccak 256 or 512 ...)
+    let algoMap = new Map<string, number>();
+    // set algo
+    algoMap.set("keccak224", 1152);
+    algoMap.set("keccak256", 1088);
+    algoMap.set("keccak384", 832);
+    algoMap.set("keccak512", 576);
 
-    this.rate = 1088;
-    this.capacity = 512;
+    this.rate = algoMap.get(algorithm);
+    this.capacity = (this.rate == undefined) ? 512 : 1600 - this.rate;
     this.delimitedSuffix = null;
-    this.hashBitLength = 256;
+    this.hashBitLength = (this.rate == undefined) ? 256 : (1600 - this.rate) / 2;
     this.options = null;
 
     this.state = new KeccakState();

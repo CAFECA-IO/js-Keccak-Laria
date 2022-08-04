@@ -39,6 +39,7 @@ class KeccakState {
   async absorb (data: number[]) : Promise<boolean> {
     // absorb the data
     for (let i = 0; i < data.length; ++i) {
+      // 
       this.state[Math.floor(this.count / 4)] ^= data[i] << (8 * (this.count % 4));
       this.count += 1;
       // call f(state)

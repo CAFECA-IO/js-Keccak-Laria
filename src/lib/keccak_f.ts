@@ -18,7 +18,7 @@ function f (s: number[]) {
     const hi3 = s[7] ^ s[17] ^ s[27] ^ s[37] ^ s[47]
     const lo4 = s[8] ^ s[18] ^ s[28] ^ s[38] ^ s[48]
     const hi4 = s[9] ^ s[19] ^ s[29] ^ s[39] ^ s[49]
-
+    
     let lo = lo4 ^ (lo1 << 1 | hi1 >>> 31)
     let hi = hi4 ^ (hi1 << 1 | lo1 >>> 31)
     
