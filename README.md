@@ -49,5 +49,18 @@ console.log(hashResult);
 // You need to call your update before digest
 const hashResult = new Keccak('keccak256').update('Your test text').digest('hex');
 ```
+## Folder Structure and files
+src/lib/ : keccak f function and keccakState class
+
+src/tests/ : test files
+
+index.ts : main keccak class 
+
+jest.config.js :  jest related config
+
+package.json : script and installation related settings
+
+tsconfig.json : use for typescript config
+
 ## Priciple to check (in Chinese)
 https://github.com/CAFECA-IO/js-Keccak-Laria/wiki/Principle
