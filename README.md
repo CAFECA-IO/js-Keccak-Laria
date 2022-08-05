@@ -16,8 +16,6 @@ const keccak256 = new Keccak('keccak256');
 ```
 2. use update and digest to get hash output
 ```
-// inherit code from step 1
-
 const hashResult = keccak256.update('Your test text').digest('hex');
 ```
 3. test the result - if your run the code from step 1 and step 2 without any modification, you will get the result below
