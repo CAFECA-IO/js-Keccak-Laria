@@ -22,6 +22,10 @@ test
 ```
 npm run test
 ```
+output:
+
+![](https://i.imgur.com/TAZ2t7q.png)
+
 ## Support keccak algorithm
 ```
 keccak224
