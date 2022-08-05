@@ -9,6 +9,19 @@ run command down below
 ```
 npm install
 ```
+## How to build it, run it and test it?
+- build:
+```
+npm run build
+```
+- run:
+```
+npm run start
+```
+- test
+```
+npm run test
+```
 ## js-Keccak-Laria support keccak down below
 ```
 keccak224
@@ -30,3 +43,11 @@ const hashResult = keccak256.update('Your test text').digest('hex');
 console.log(hashResult);
 // hashResult = d215f22cf53667dcd80f18a730123452db9454a4a2f3db447cba9ddd8c3a34c9
 ```
+## Problem you may face
+1. Get digest is already called error
+```
+// You need to call your update before digest
+const hashResult = new Keccak('keccak256').update('Your test text').digest('hex');
+```
+## Priciple to check 
+https://github.com/CAFECA-IO/js-Keccak-Laria/wiki/Principle
