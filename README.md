@@ -12,8 +12,6 @@ npm install
 ## How to use it?
 1. create Keccak with algorithm name
 ```
-// you can replace keccak256 with any keccak algorithm name
-
 const keccak256 = new Keccak('keccak256');
 ```
 2. use update and digest to get hash output
