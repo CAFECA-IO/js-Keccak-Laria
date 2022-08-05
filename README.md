@@ -22,7 +22,7 @@ test
 ```
 npm run test
 ```
-output:
+test output:
 
 ![](https://i.imgur.com/TAZ2t7q.png)
 
