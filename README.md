@@ -9,6 +9,13 @@ run command down below
 ```
 npm install
 ```
+## js-Keccak-Laria support keccak down below
+```
+keccak224
+keccak256
+keccak384
+keccak512
+```
 ## How to use it?
 1. create Keccak with algorithm name
 ```
