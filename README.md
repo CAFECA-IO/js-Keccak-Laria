@@ -1,7 +1,5 @@
 # js-Keccak-Laria
 
-# js-Keccak-Laria
-
 ## Requirement
 ```
 node / v12.5.0^
