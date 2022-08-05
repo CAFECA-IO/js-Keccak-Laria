@@ -36,6 +36,7 @@ keccak512
 ## How to use it?
 1. create Keccak with algorithm name
 ```
+const Keccak = require('@cafeca/keccak');
 const keccak256 = new Keccak('keccak256');
 ```
 2. use update function with your text and digest function with encoding type you want to get hash output value

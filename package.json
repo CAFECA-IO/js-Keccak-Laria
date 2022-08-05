@@ -1,5 +1,5 @@
 {
-  "name": "keccak-laria",
+  "name": "@cafeca/keccak",
   "version": "0.8.0",
   "description": "Pure Javascript Keccak Library",
   "main": "dist/index.js",
