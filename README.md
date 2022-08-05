@@ -49,5 +49,5 @@ console.log(hashResult);
 // You need to call your update before digest
 const hashResult = new Keccak('keccak256').update('Your test text').digest('hex');
 ```
-## Priciple to check 
+## Priciple to check (in Chinese)
 https://github.com/CAFECA-IO/js-Keccak-Laria/wiki/Principle
