@@ -1,6 +1,6 @@
 {
   "name": "keccak-laria",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "description": "Pure Javascript Keccak Library",
   "main": "dist/index.js",
   "scripts": {
