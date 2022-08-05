@@ -22,7 +22,7 @@ test
 ```
 npm run test
 ```
-## js-Keccak-Laria support keccak down below
+## Support keccak down below
 ```
 keccak224
 keccak256
