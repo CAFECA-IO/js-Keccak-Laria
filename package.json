@@ -1,6 +1,6 @@
 {
   "name": "@cafeca/keccak",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Pure Javascript Keccak Library",
   "main": "dist/index.js",
   "scripts": {
@@ -30,5 +30,23 @@
   },
   "dependencies": {
     "typescript": "^4.7.4"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "hash",
+    "keccak"
+  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "lib": [
+      "es2016"
+    ],
+    "sourceMap": true
+  },
+  "include": [
+    "src/index.ts",
+    "src/**/*.ts"
+  ]
 }
