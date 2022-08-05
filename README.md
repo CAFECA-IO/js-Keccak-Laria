@@ -22,7 +22,7 @@ test
 ```
 npm run test
 ```
-## Support keccak down below
+## Support keccak algorithm
 ```
 keccak224
 keccak256
