@@ -1,2 +1,7 @@
 # js-Keccak-Laria
-Pure Javascript Keccak Library
+
+## Requirement
+
+## Before we get started
+
+## How to use it?
