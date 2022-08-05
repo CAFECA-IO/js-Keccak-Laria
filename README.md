@@ -10,15 +10,15 @@ run command down below
 npm install
 ```
 ## How to build it, run it and test it?
-- build:
+build:
 ```
 npm run build
 ```
-- run:
+run:
 ```
 npm run start
 ```
-- test
+test
 ```
 npm run test
 ```
