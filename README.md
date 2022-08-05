@@ -43,7 +43,7 @@ const hashResult = keccak256.update('Your test text').digest('hex');
 console.log(hashResult);
 // hashResult = d215f22cf53667dcd80f18a730123452db9454a4a2f3db447cba9ddd8c3a34c9
 ```
-## Problem you may face
+## Problem you may face with
 1. Get digest is already called error
 ```
 // You need to call your update before digest
