@@ -34,7 +34,7 @@ keccak512
 ```
 const keccak256 = new Keccak('keccak256');
 ```
-2. use update function with your text and digest function with encoding type to get hash output value
+2. use update function with your text and digest function with encoding type you want to get hash output value
 ```
 const hashResult = keccak256.update('Your test text').digest('hex');
 ```
