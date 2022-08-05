@@ -1,6 +1,6 @@
 {
   "name": "@cafeca/keccak",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Pure Javascript Keccak Library",
   "main": "dist/index.js",
   "scripts": {
@@ -38,15 +38,7 @@
     "hash",
     "keccak"
   ],
-  "compilerOptions": {
-    "outDir": "dist",
-    "lib": [
-      "es2016"
-    ],
-    "sourceMap": true
-  },
-  "include": [
-    "src/index.ts",
-    "src/**/*.ts"
+  "files": [
+    "dist"
   ]
 }
