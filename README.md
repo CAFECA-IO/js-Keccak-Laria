@@ -14,7 +14,7 @@ npm install
 ```
 const keccak256 = new Keccak('keccak256');
 ```
-2. use update and digest to get hash output
+2. use update function with your text and digest function with encoding type to get hash output
 ```
 const hashResult = keccak256.update('Your test text').digest('hex');
 ```
