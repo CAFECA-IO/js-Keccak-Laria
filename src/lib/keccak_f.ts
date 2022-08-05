@@ -3,8 +3,10 @@ const RC = [1, 0, 32898, 0, 32906, 2147483648, 2147516416, 2147483648, 32907, 0,
 
 function f (s: number[]) {
 
-  // 24 rounds loop
+  // 根據 keccak 原理算出： 12 + 2l = 24 rounds loop 
   for (let round = 0; round < 24; ++round) {
+
+    // 1600 / 8 = 200 (換成 byte) 200/4 （根據數學運算 -> 4 個一組）= 50 -> state[50]
 
     // theta
     // column lo and hi
@@ -85,7 +87,7 @@ function f (s: number[]) {
     const t1lo24 = s[48] ^ lo
     const t1hi24 = s[49] ^ hi
 
-    // rho & pi
+    // rho & pi (對應到 r table 做位移)
     const t2lo0 = t1lo0
     const t2hi0 = t1hi0
     const t2lo16 = (t1hi5 << 4 | t1lo5 >>> 28)
@@ -137,7 +139,7 @@ function f (s: number[]) {
     const t2lo4 = (t1lo24 << 14 | t1hi24 >>> 18)
     const t2hi4 = (t1hi24 << 14 | t1lo24 >>> 18)
 
-    // chi
+    // chi 
     s[0] = t2lo0 ^ (~t2lo1 & t2lo2)
     s[1] = t2hi0 ^ (~t2hi1 & t2hi2)
     s[10] = t2lo5 ^ (~t2lo6 & t2lo7)
