@@ -1,4 +1,5 @@
 // call keccak and test final result
+// import Keccak from '../index';
 const Keccak = require('../index');
 
 const keccak = new Keccak();
