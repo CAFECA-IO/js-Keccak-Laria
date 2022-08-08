@@ -1,8 +1,7 @@
 // call keccak and test final result
-// import Keccak from '../index';
-const Keccak = require('@cafeca/keccak');
+const Keccak = require('../index');
 
-const keccak = Keccak('keccak256');
+const keccak = new Keccak();
 const keccak256 = new Keccak('keccak256');
 const keccak512 = new Keccak('keccak512');
 const keccak224 = new Keccak('keccak224');
