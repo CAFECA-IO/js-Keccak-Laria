@@ -111,4 +111,4 @@ class Keccak {
 
 }
 
-(module).exports = Keccak;
+module.exports = Keccak;
