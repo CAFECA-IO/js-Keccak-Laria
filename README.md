@@ -1,4 +1,5 @@
 # js-Keccak-Laria
+pure keccak library
 
 ## Requirement
 ```
@@ -76,5 +77,3 @@ tsconfig.json : use for typescript config
 
 ## Priciple to check (in Chinese)
 https://github.com/CAFECA-IO/js-Keccak-Laria/wiki/Principle
-
-
