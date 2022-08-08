@@ -7,8 +7,7 @@
     "start": "ts-node src/index.ts",
     "dev": "nodemon --watch 'src/**/*.ts' --exec ts-node src/index.ts",
     "build": "tsc",
-    "test": "jest --coverage",
-    "start:run": "nodemon ./dist/index.js"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
