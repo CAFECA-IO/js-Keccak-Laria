@@ -2,7 +2,7 @@
 import KeccakState from "./lib/keccak_state";
 
 type Nullable<T> = T | null;
-
+declare var module: any;
 /**
  * Keccak class used to organize the keccak related functions
  */
@@ -111,4 +111,4 @@ class Keccak {
 
 }
 
-export default Keccak;
+(module).exports = Keccak;
