@@ -75,5 +75,5 @@ package.json : script and installation related settings
 
 tsconfig.json : use for typescript config
 
-## Priciple to check (in Chinese)
+## Principle to check (in Chinese)
 https://github.com/CAFECA-IO/js-Keccak-Laria/wiki/Principle

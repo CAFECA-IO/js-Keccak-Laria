@@ -53,11 +53,17 @@ class KeccakState {
    * @param data data(input message) number[] list
    * @returns absorb status boolean
    */  
-  async absorb (data: Buffer) : Promise<boolean> {
+  // Buffer -> ArrayBuffer
+  async absorb (data: ArrayBuffer) : Promise<boolean> {
+
     // absorb the data
-    for (let i = 0; i < data.length; ++i) {
+    // add this line
+    const view = new Uint8Array(data);
+
+    for (let i = 0; i < data.byteLength; ++i) {
       // do math calculation -> do data(in blocksize) xor state and store result to state
-      this.state[Math.floor(this.count / 4)] ^= data[i] << (8 * (this.count % 4));
+      // data -> view
+      this.state[Math.floor(this.count / 4)] ^= view[i] << (8 * (this.count % 4));
       this.count += 1;
       // call f(state)
       if (this.count === this.blockSize) {
@@ -102,17 +108,21 @@ class KeccakState {
    * @param length output bits length  
    * @returns output result
    */  
-  squeeze (length: number) : Buffer {  
+  // : Buffer -> ArrayBuffer
+  squeeze (length: number) : ArrayBuffer {  
     // if no absorb function with input data which need to squeeze -> 針對 0x01 call absorbLastFewBits
     if (!this.squeezing) {
       this.absorbLastFewBits(0x01);
     }
     // create buffer with length
-    const output = Buffer.alloc(length);
-    
+    // const output = Buffer.alloc(length);
+    const output = new ArrayBuffer(length); // 2 bytes for each char
+    const view = new Uint8Array(output);
+
     for (let i = 0; i < length; ++i) {
       // 數學運算： 截斷後 8 bits 並去除
-      output[i] = (this.state[Math.floor(this.count / 4)] >>> (8 * (this.count % 4))) & 0xff;
+      // output -> view
+      view[i] = (this.state[Math.floor(this.count / 4)] >>> (8 * (this.count % 4))) & 0xff;
       this.count += 1;
 
       if (this.count === this.blockSize) {
@@ -122,8 +132,8 @@ class KeccakState {
       }
     
     }
-    // return output buffer
-    return output;
+    // return output buffer -> view
+    return view;
   }
   
 }

@@ -54,13 +54,19 @@ class Keccak {
    */
   update (data: any, encoding?: BufferEncoding | undefined) : any {
     // check is buffer or string
-    if (!Buffer.isBuffer(data) && typeof data !== 'string') {
+    // Buffer to frontend and backend 
+    // isArrayBuffer -> Buffer.isBuffer
+    if (!this.isArrayBuffer(data) && typeof data !== 'string') {
       throw new TypeError('Data should be a string or a buffer');
     } 
     if (this.finalized) {
       throw new Error('Digest is already called');
     }
-    if (!Buffer.isBuffer(data)) {
+    // Buffer.isBuffer
+    if (!this.isArrayBuffer(data)) {
+      // change encoding that fit ArrayBuffer
+      // ++ Todo : need to add buffer encoding like utf8 , base64, hex
+      // need to add utf8, utf-8, ascii,latin1, binary, base64, ucs2, ucs-2, utf16le, utf-16le
       data = Buffer.from(data, encoding);
     } 
     // do absorb function
@@ -107,6 +113,11 @@ class Keccak {
   resetState () : any {
     // bring state and call initialize
     this.state.initialize(this.rate, this.capacity);
+  }
+
+  // check if it's arraybuffer
+  isArrayBuffer(value: any) {
+    return value && value.buffer instanceof ArrayBuffer && value.byteLength !== undefined;
   }
 
 }
