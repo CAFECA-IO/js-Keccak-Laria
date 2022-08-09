@@ -10,13 +10,13 @@ const keccak384 = new Keccak('keccak384');
 
 // overall test
 // describe("Check overall Keccak output hash is correct", () => {
-   
+
 //     // keccak256: check input data -> output corrected hash
 //     test("keccak256 - check output value equals to expected hash", () => {
 //         const result = keccak256.update("Clemmy").digest('hex');
 //         expect(result).toBe("bc36d594fb78cbd38b741826c49755e1c15ae5049c91c3f014511ec1a83786d6");
 //     });
-    
+
 //     // keccak512: check input data -> output corrected hash
 //     test("keccak512 - check output value equals to expected hash", () => {
 //         const result = keccak512.update("Clemmy").digest('hex');
@@ -39,39 +39,38 @@ const keccak384 = new Keccak('keccak384');
 
 // index.ts test
 // check constructor map error
-describe("Check rate equals to undefined error", () => {
-    // test for buffer type error
-    test("Check rate equals to undefined error", () => {
-        const keccakUndefined = new Keccak('keccak000');
-    });
+describe('Check rate equals to undefined error', () => {
+  // test for buffer type error
+  test('Check rate equals to undefined error', () => {
+    const keccakUndefined = new Keccak('keccak000');
+  });
 });
 
 // check update error
-describe("Check update error", () => {
-    // test for buffer type error
-    test("Check buffer type error", () => {
-        expect(() => {
-            keccak.update({test:"test for not buffer"});
-        }).toThrow(TypeError);
-    });
-    // check finalized == true in update
-    test("Check already digest error", () => {
-        // test for finalize exception
-        expect(() => {
-            keccak.update('test1').digest('hex');
-            keccak.update('test2');
-        }).toThrow(Error);
-    });
+describe('Check update error', () => {
+  // test for buffer type error
+  test('Check buffer type error', () => {
+    expect(() => {
+      keccak.update({test: 'test for not buffer'});
+    }).toThrow(TypeError);
+  });
+  // check finalized == true in update
+  test('Check already digest error', () => {
+    // test for finalize exception
+    expect(() => {
+      keccak.update('test1').digest('hex');
+      keccak.update('test2');
+    }).toThrow(Error);
+  });
 });
 
 // check digest error
-describe("Check digest error", () => {
-    // test for buffer type error
-    test("Check already digest error", () => {
-        expect(() => {
-            keccak.digest('hex');
-            keccak.digest('hex');
-        }).toThrow(Error);
-    });
+describe('Check digest error', () => {
+  // test for buffer type error
+  test('Check already digest error', () => {
+    expect(() => {
+      keccak.digest('hex');
+      keccak.digest('hex');
+    }).toThrow(Error);
+  });
 });
-
