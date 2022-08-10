@@ -1,0 +1,7 @@
+"parserOptions": {
+    "ecmaVersion": 2019, // 支援 ECMAScript2019
+    "sourceType": "module", // 使用 ECMAScript ****module 
+    "ecmaFeatures": {
+      "jsx": true // 支援 JSX
+    }
+}
