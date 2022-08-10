@@ -14,6 +14,11 @@
     "validate": "npm run check-format && npm run lint",
     "example": "npm-run-all --parallel check-format lint build"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/CAFECA-IO/js-Keccak-Laria.git"
