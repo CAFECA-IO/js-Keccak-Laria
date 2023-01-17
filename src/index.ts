@@ -2,7 +2,7 @@
 import KeccakState from './lib/keccak_state';
 import {isArrayBuffer} from './lib/buffer';
 type Nullable<T> = T | null;
-declare var module: any;
+
 /**
  * Keccak class used to organize the keccak related functions
  */
@@ -106,10 +106,10 @@ class Keccak {
   /**
    * resetState function to reset state
    */
-  resetState(): any {
+  resetState(): void {
     // bring state and call initialize
     this.state.initialize(this.rate, this.capacity);
   }
 }
 
-module.exports = Keccak;
+export default Keccak;
