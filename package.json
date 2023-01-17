@@ -1,6 +1,6 @@
 {
   "name": "@cafeca/keccak",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "description": "Pure Javascript Keccak Library",
   "main": "dist/index.js",
   "scripts": {
