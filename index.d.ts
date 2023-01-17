@@ -1,6 +1,6 @@
 type Nullable<T> = T | null;
 
-declare class Keccak {
+export interface Keccak {
   rate: number | undefined;
   capacity: number | undefined;
   delimitedSuffix: Nullable<number>;
@@ -10,7 +10,7 @@ declare class Keccak {
   finalized: boolean;
   isReady: boolean;
 
-  constructor(algorithm: string);
+  constructor(algorithm?: string);
   update(data: any, encoding?: BufferEncoding | undefined): any;
   digest(encoding: BufferEncoding | undefined): string;
   resetState();
