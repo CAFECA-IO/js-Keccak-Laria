@@ -10,14 +10,14 @@ export class Keccak {
   finalized: boolean;
   isReady: boolean;
 
-  static keccak(data: any, algorithm?: string): string;
-  static keccak224(data: any): string;
-  static keccak256(data: any): string;
-  static keccak384(data: any): string;
-  static keccak512(data: any): string;
-
   constructor(algorithm?: string);
   update(data: any, encoding?: BufferEncoding | undefined): any;
   digest(encoding: BufferEncoding | undefined): string;
-  resetState();
+  resetState(): void;
 }
+
+export function keccak(data: any, algorithm?: string): string;
+export function keccak224(data: any, algorithm?: string): string;
+export function keccak256(data: any, algorithm?: string): string;
+export function keccak384(data: any, algorithm?: string): string;
+export function keccak512(data: any, algorithm?: string): string;
