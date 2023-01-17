@@ -16,6 +16,24 @@ class Keccak {
   finalized: boolean;
   isReady: boolean;
 
+  static keccak(data: any, algorithm: string = 'keccak256'): string {
+    const hasher = new Keccak(algorithm);
+    const result = hasher.update(data).digest('hex');
+    return result;
+  }
+  static keccak224(data: any):string {
+    return this.keccak(data, 'keccak224');
+  }
+  static keccak256(data: any):string {
+    return this.keccak(data, 'keccak256');
+  }
+  static keccak384(data: any):string {
+    return this.keccak(data, 'keccak384');
+  }
+  static keccak512(data: any):string {
+    return this.keccak(data, 'keccak512');
+  }
+
   // user constructor to initialize params
   /**
    * use constructor to set rate, capacity, delimitedSuffix, options
@@ -91,9 +109,8 @@ class Keccak {
 
     // set result to digest
     let digest = this.state.squeeze(this.hashBitLength / 8);
-
     if (encoding !== undefined) {
-      digest = digest.toString(encoding);
+      digest = Buffer.from(digest).toString(encoding);
     }
     // call resetState()
     this.resetState();
@@ -112,4 +129,4 @@ class Keccak {
   }
 }
 
-export default Keccak;
+module.exports = Keccak;

@@ -32,7 +32,7 @@ test('check absorb function state value', () => {
   keccakState.initialize(1088, 512);
   keccakState.absorb(data);
 
-  let state = [];
+  let state:number[] = [];
   for (let i = 0; i < 50; ++i) {
     state[i] = 0;
   }
@@ -64,7 +64,7 @@ test('check absorbFewBits function state value', () => {
   keccakState.absorbLastFewBits(0x01);
 
   // mock coculation
-  let state = [];
+  let state:number[] = [];
   for (let i = 0; i < 50; ++i) {
     state[i] = 0;
   }
