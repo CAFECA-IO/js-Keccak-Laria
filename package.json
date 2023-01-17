@@ -1,9 +1,9 @@
 {
   "name": "@cafeca/keccak",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "Pure Javascript Keccak Library",
   "main": "dist/index.js",
-  "types": "src/index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
     "dev": "nodemon --watch 'src/**/*.ts' --exec ts-node src/index.ts",
@@ -55,6 +55,7 @@
     "keccak"
   ],
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts"
   ]
 }
